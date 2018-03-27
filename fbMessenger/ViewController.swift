@@ -16,8 +16,9 @@ class FriendsController: UICollectionViewController {
         collectionView?.backgroundColor = UIColor.red
         
         
-        
     }
+    
+    
 
     
 
