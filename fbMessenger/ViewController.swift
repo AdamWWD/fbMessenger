@@ -15,7 +15,9 @@ class FriendsController: UICollectionViewController, UICollectionViewDelegateFlo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView?.backgroundColor = UIColor.red
+        collectionView?.backgroundColor = UIColor.white
+        collectionView?.alwaysBounceVertical = true
+        
         collectionView?.register(FriendCell.self, forCellWithReuseIdentifier: cellId)
         
     }
@@ -33,7 +35,33 @@ class FriendsController: UICollectionViewController, UICollectionViewDelegateFlo
     }
 }
 
-class FriendCell: UICollectionViewCell {
+class FriendCell: BaseCell {
+    
+    let profileImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 34
+        imageView.layer.masksToBounds = true
+        return imageView
+    }()
+    
+    
+    override func setupView() {
+        
+        addSubview(profileImageView)
+        profileImageView.image = UIImage(named:"zuckprofile")
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0(68)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":profileImageView]))
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0(68)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":profileImageView]))
+        
+        
+        
+        
+    }
+}
+
+class BaseCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -46,5 +74,8 @@ class FriendCell: UICollectionViewCell {
     func setupView() {
         backgroundColor = UIColor.blue
     }
+
+    
+    
 }
 
