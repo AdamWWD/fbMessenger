@@ -15,6 +15,8 @@ class FriendsController: UICollectionViewController, UICollectionViewDelegateFlo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Recent"
+        
         collectionView?.backgroundColor = UIColor.white
         collectionView?.alwaysBounceVertical = true
         
@@ -45,15 +47,31 @@ class FriendCell: BaseCell {
         return imageView
     }()
     
+    let dividerLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
+        return view
+    }()
     
     override func setupView() {
         
         addSubview(profileImageView)
+        addSubview(dividerLineView)
+        
         profileImageView.image = UIImage(named:"zuckprofile")
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        dividerLineView.translatesAutoresizingMaskIntoConstraints = false
+    
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0(68)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":profileImageView]))
         
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0(68)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":profileImageView]))
+        
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-82-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":dividerLineView]))
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(1)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":dividerLineView]))
+        
         
         
         
